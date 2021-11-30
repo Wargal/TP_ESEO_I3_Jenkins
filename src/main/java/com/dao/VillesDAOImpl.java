@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,8 @@ import com.dto.Ville.Coordonnees;
 
 @Repository
 public class VillesDAOImpl extends Dao<Ville> implements VillesDAO {
+    private static final Logger LOGGER = Logger.getLogger(VillesDAOImpl.class.getName());
+
 
 	/**
 	 * Dans la DAO on récupère juste les données
@@ -40,9 +44,9 @@ public class VillesDAOImpl extends Dao<Ville> implements VillesDAO {
 			ville = new Ville(Code_commune_INSEE, Nom_commune, Code_postal, Libelle_acheminement, Ligne_5, coordonnees);
 
 		} catch (SQLException e) {
-			// LoggerSystem log = new LoggerSystem(LOGGER_NAME);
-			// log.addLog(e.getMessage(), "info");
-			e.printStackTrace();
+
+            LOGGER.log(Level.WARNING, "Exception occur", e);
+
 		}
 		return ville;
 	}
@@ -93,9 +97,8 @@ public class VillesDAOImpl extends Dao<Ville> implements VillesDAO {
 						coordonnees));
 			}
 		} catch (SQLException e) {
-			// LoggerSystem log = new LoggerSystem(LOGGER_NAME);
-			// log.addLog(e.getMessage(), "info");
-			e.printStackTrace();
+            LOGGER.log(Level.WARNING, "Exception occur", e);
+
 		}
 		return villes;
 	}
@@ -132,9 +135,8 @@ public class VillesDAOImpl extends Dao<Ville> implements VillesDAO {
 			ResultSet result = statement.executeQuery(query.toString());
 			
 		} catch (SQLException e) {
-			// LoggerSystem log = new LoggerSystem(LOGGER_NAME);
-			// log.addLog(e.getMessage(), "info");
-			e.printStackTrace();
+            LOGGER.log(Level.WARNING, "Exception occur", e);
+
 		}
 		
 	}
@@ -171,9 +173,8 @@ public class VillesDAOImpl extends Dao<Ville> implements VillesDAO {
 			ResultSet result = statement.executeQuery(query.toString());
 			
 		} catch (SQLException e) {
-			// LoggerSystem log = new LoggerSystem(LOGGER_NAME);
-			// log.addLog(e.getMessage(), "info");
-			e.printStackTrace();
+            LOGGER.log(Level.WARNING, "Exception occur", e);
+
 		}
 		
 	}
@@ -191,9 +192,8 @@ public class VillesDAOImpl extends Dao<Ville> implements VillesDAO {
 			ResultSet result = statement.executeQuery(query.toString());
 			
 		} catch (SQLException e) {
-			// LoggerSystem log = new LoggerSystem(LOGGER_NAME);
-			// log.addLog(e.getMessage(), "info");
-			e.printStackTrace();
+            LOGGER.log(Level.WARNING, "Exception occur", e);
+
 		}
 		
 	}
