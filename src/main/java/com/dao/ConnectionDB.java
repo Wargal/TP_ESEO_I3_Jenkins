@@ -3,8 +3,12 @@ package com.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConnectionDB {
+	
+    private static final Logger LOGGER = Logger.getLogger(ConnectionDB.class.getName());
 
 	private ConnectionDB() {
 
@@ -38,14 +42,14 @@ public class ConnectionDB {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Exception occur", e1);
+
 		}
 		if (connect == null) {
 			try {
 				connect = DriverManager.getConnection(url, user, password);
 			} catch (SQLException e) {
-
-				e.printStackTrace();
+	            LOGGER.log(Level.SEVERE, "Exception occur", e);
 			}
 		}
 		return connect;
